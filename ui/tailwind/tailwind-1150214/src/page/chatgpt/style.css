@@ -1,0 +1,55 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-brand: rgb(93, 91, 208);
+}
+
+@layer components {
+  .svg-2xl-button {
+    @apply p-2 hover:bg-slate-100 rounded-2xl cursor-pointer;
+  }
+  .svg-full-button {
+    @apply p-2 hover:bg-slate-100 rounded-full cursor-pointer;
+  }
+  .tool-item {
+    @apply flex items-center gap-2 px-4 py-3 bg-white border border-slate-200 rounded-full cursor-pointer;
+    @apply opacity-60 hover:opacity-100 hover:bg-slate-50 duration-75;
+    img {
+      @apply w-5 h-auto;
+    }
+    span {
+      @apply text-sm  tracking-widest;
+    }
+  }
+  .hover-wrapper {
+    @apply relative;
+    &:hover {
+      span {
+        @apply inline-block transition-opacity duration-300;
+      }
+    }
+    .t-center {
+      @apply bottom-full mb-2;
+      @apply left-1/2 -translate-x-1/2;
+    }
+    .t-left {
+      @apply bottom-full mb-2 left-0;
+    }
+    .b-center {
+      @apply top-full mt-2;
+      @apply left-1/2 -translate-x-1/2;
+    }
+    .b-right {
+      @apply top-full mt-2 right-0;
+    }
+    .r-center {
+      @apply left-full ms-3;
+      @apply bottom-1/2 translate-y-1/2;
+    }
+    span {
+      @apply hidden;
+      @apply absolute   whitespace-nowrap;
+      @apply px-2 py-1 bg-black text-sm text-white font-black rounded-lg;
+    }
+  }
+}

@@ -1,0 +1,81 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-stripe-primary: #533afd;
+  --color-stripe-primary-dark: #4032c8;
+  --color-stripe-secondary: #42678e;
+}
+
+@layer base {
+  #strip-page {
+    * {
+      @apply font-sans;
+      @apply transition-all duration-300;
+    }
+
+    button {
+      @apply cursor-pointer;
+    }
+
+    section {
+      @apply px-5;
+    }
+    em {
+      @apply not-italic;
+    }
+  }
+}
+
+@layer utilities {
+  #strip-page {
+    .bg-primary {
+      background-color: var(--color-stripe-primary);
+    }
+    .bg-primary-dark {
+      background-color: var(--color-stripe-primary-dark);
+    }
+    .text-secondary {
+      color: var(--color-stripe-secondary);
+    }
+  }
+}
+
+@layer components {
+  #strip-page {
+    .primary-btn {
+      @apply px-5 py-3 rounded-sm font-bold;
+      background-color: var(--color-stripe-primary);
+      color: white;
+      &:hover {
+        background-color: var(--color-stripe-primary-dark);
+      }
+    }
+    .secondary-btn {
+      @apply px-5 py-3 rounded-sm font-bold border border-white;
+      @apply bg-white;
+      @apply text-slate-200;
+      &:hover {
+        color: var(--color-stripe-primary-dark);
+        border-color: var(--color-stripe-primary-dark);
+      }
+    }
+    .outlined-btn {
+      @apply px-5 py-3 rounded-sm font-bold border;
+      border-color: var(--color-stripe-primary);
+      background-color: white;
+      color: var(--color-stripe-primary);
+      &:hover {
+        border-color: var(--color-stripe-primary-dark);
+        color: var(--color-stripe-primary-dark);
+      }
+    }
+
+    .frame {
+      @apply outline outline-slate-300;
+    }
+
+    .frame-container {
+      @apply px-25 py-30;
+    }
+  }
+}

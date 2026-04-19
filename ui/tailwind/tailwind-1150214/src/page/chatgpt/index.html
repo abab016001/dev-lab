@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>tailwind-1150214</title>
+</head>
+
+<body>
+  <script type="module" src="/src/main.js"></script>
+
+  <!-- Container -->
+  <div class="flex min-h-125">
+    <!-- SideNavBar -->
+    <nav class="h-screen py-3 px-2 space-y-6 border-r border-slate-200 hidden md:block group hover:cursor-ew-resize">
+      <header>
+        <div data-role="svg-chatgpt" class="svg-2xl-button block group-hover:hidden"></div>
+        <button class="hover-wrapper hidden group-hover:block">
+          <span class="r-center">開啟側邊欄</span>
+          <div data-role="svg-panel-left" class="svg-2xl-button cursor-ew-resize"></div>
+        </button>
+      </header>
+      <section class="flex flex-col">
+        <button class="hover-wrapper">
+          <span class="r-center">新對話</span>
+          <div data-role="svg-edit" class="svg-2xl-button"></div>
+        </button>
+        <button class="hover-wrapper">
+          <span class="r-center">搜尋對話</span>
+          <div data-role="svg-search" class="svg-2xl-button"></div>
+        </button>
+        <button class="hover-wrapper">
+          <span class="r-center">對話</span>
+          <div data-role="svg-photo" class="svg-2xl-button"></div>
+        </button>
+      </section>
+    </nav>
+    <!-- Main -->
+    <main class="flex flex-col py-3 px-5 space-y-6 flex-1">
+      <header class="flex justify-between items-center">
+        <div layout="left" class="flex items-center">
+          <div data-role="svg-menu" class="mr-5"></div>
+          <button class="flex items-center gap-1 px-3 py-2 hover:bg-slate-100 rounded-xl cursor-pointer">
+            <h1 class="text-xl">ChatGPT</h1>
+            <div data-role="svg-chevron-down" class="opacity-30"></div>
+          </button>
+        </div>
+        <div layout="center" class="hidden flex-1 sm:flex lg:justify-center">
+          <button
+            class="inline-flex gap-1 px-4 py-2 rounded-full text-brand bg-brand/10 hover:bg-brand/20 cursor-pointer">
+            <div data-role="svg-sparkle" class="scale-70"></div>
+            <span>取得 Plus 版本</span>
+            <div data-role="svg-x" class="scale-50  text-slate-800"></div>
+          </button>
+        </div>
+        <div layout="right" class="flex gap-2">
+          <button class="hover-wrapper">
+            <span class="b-center">開始群組對話</span>
+            <div data-role="svg-user-plus" class="svg-full-button"></div>
+          </button>
+          <button class="hover-wrapper">
+            <span class="b-right">開啟暫存對話</span>
+            <div data-role="svg-chat" class="svg-full-button"></div>
+          </button>
+        </div>
+      </header>
+      <section class="flex-1 flex flex-col justify-center items-center gap-8 px-10">
+        <h2 class="text-4xl">隨時準備好就可以開始了。</h2>
+        <div layout="input-wrapper" class="bg-white fixed z-10 bottom-5 lg:static lg:w-full">
+          <div layout="input"
+            class="flex items-center gap-4 p-3 border border-slate-300 rounded-full hover:shadow-md duration-250">
+            <button class="hover-wrapper">
+              <span class="t-left">新增檔案等更多功能</span>
+              <div data-role="svg-plus" class="svg-full-button"></div>
+            </button>
+            <input type="text" placeholder="想問就問" class="outline-none flex-1">
+            <button class="hover-wrapper">
+              <span class="t-center">聽寫</span>
+              <div data-role="svg-microphone" class="svg-full-button"></div>
+            </button>
+            <button class="hover-wrapper">
+              <span class="t-center">使用語音功能</span>
+              <div data-role="svg-audio" class="p-2 text-white bg-black rounded-full hover:opacity-50 cursor-pointer">
+              </div>
+            </button>
+          </div>
+        </div>
+        <ul layout="tool-wrapper" class="flex flex-col lg:flex-row gap-3">
+          <li class="tool-item">
+            <img data-role="img-photo">
+            <span>創作圖像</span>
+          </li>
+          <li class="tool-item">
+            <img data-role="img-book-open">
+            <span>學習知識</span>
+          </li>
+          <li class="tool-item">
+            <img data-role="img-pencil">
+            <span>編寫或編輯</span>
+          </li>
+          <li class="tool-item">
+            <img data-role="img-lightbulb">
+            <span>逐步說明</span>
+          </li>
+        </ul>
+      </section>
+    </main>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,14 @@
+@import 'tailwindcss';
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap');
+
+@theme {
+  /* 覆蓋 Tailwind 內建的 sans 族群 */
+  --font-sans:
+    'sohne-var', 'SF Pro Display', system-ui, -apple-system, sans-serif;
+}
+
+/* 自訂 class */
+@utility flex-v-center {
+  @apply flex items-center;
+}

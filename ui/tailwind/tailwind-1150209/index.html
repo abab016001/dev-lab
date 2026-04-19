@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>tailwind-1150209</title>
+</head>
+
+<body>
+  <script type="module" src="/src/main.js"></script>
+
+  <!-- 1 -->
+  <nav class="sticky top-0 bg-white/80 backdrop-blur-md">
+    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+      <div class="text-xl font-bold text-brand">MyBrand</div>
+      <div class="space-x-4">
+        <a href="#" class="text-slate-600 hover:text-brand transition-colors">產品介紹</a>
+        <a href="#" class="text-slate-600 hover:text-brand transition-colors">聯絡我們</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="bg-linear-to-br from-brand/10 to-white">
+    <div class="max-w-6xl mx-auto px-6 py-24 flex flex-col md:flex-row items-center gap-12">
+      <div class="flex-1 text-center md:text-left">
+        <h1 class="text-5xl font-extrabold text-slate-900 tracking-tight">
+          用 Tailwind v4 <br /> 打造完美的網頁
+        </h1>
+        <p class="mt-6 text-lg text-slate-600">
+          恭喜你！你已經從新手村畢業，現在你可以精準控制每一個像素。
+        </p>
+        <button class="mt-10 ">
+          開始體驗
+        </button>
+      </div>
+
+      <div class="w-64 h-64 bg-brand/20 rounded-full blur-3xl animate-pulse"></div>
+    </div>
+  </main>
+</body>
+
+</html>
