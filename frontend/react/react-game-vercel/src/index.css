@@ -1,0 +1,53 @@
+@import 'tailwindcss';
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+  button {
+    @apply px-5 py-2 bg-white font-bold text-slate-800;
+    @apply border-3 border-slate-800 rounded-lg cursor-pointer;
+    &:hover {
+      @apply text-blue-800 border-blue-600;
+    }
+  }
+}
+
+@layer components {
+  .board {
+    @apply grid grid-cols-3 border-2 border-blue-500;
+    @apply h-75 w-75;
+  }
+  .square {
+    @apply outline outline-blue-500;
+    @apply cursor-pointer hover:bg-slate-200;
+    @apply relative;
+  }
+  .piece {
+    @apply absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2;
+  }
+}
+
+@layer components-blockUI {
+  .blockUI {
+    @apply absolute top-0 left-0 w-full h-full bg-black/50;
+  }
+  .blockUI .container {
+    @apply w-full h-full flex justify-center items-center;
+  }
+  .blockUI .content {
+    @apply bg-white p-5 rounded-lg min-w-2xl;
+    @apply flex flex-col gap-5;
+  }
+  .blockUI header {
+    @apply p-5 flex justify-center items-center;
+    @apply text-5xl font-bold tracking-[0.5em] border-b border-gray-500;
+  }
+  .blockUI main {
+    @apply my-5 p-5 flex flex-col justify-center items-center gap-5;
+    @apply text-4xl font-bold tracking-[0.5em];
+  }
+  .blockUI footer {
+    @apply flex justify-between;
+  }
+}
