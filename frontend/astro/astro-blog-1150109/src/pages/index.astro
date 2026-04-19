@@ -1,0 +1,93 @@
+---
+import Display from '../components/Display.astro'
+import Button from '../components/Button'
+
+import ProductList from '../components/ProductList.astro'
+import Cart from '../components/Cart.astro'
+
+import ProduceList2 from '../components2/ProduceList.astro'
+import Cart2 from '../components2/Cart.astro'
+import { Cart as Cart2_tsx } from '../components2/Cart'
+
+import '../styles/global.css'
+import ThemeToggle from '../components/ThemeToggle.astro'
+
+import ReactInput from '../components/ReactInput'
+import ViewPreview from '../components/ViewPreview.vue'
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Astro</title>
+
+    <script is:inline>
+      const theme = localStorage.getItem('theme') || 'light'
+      if (theme === 'dark') {
+        document.documentElement.classList.add('dark')
+      } else {
+        document.documentElement.classList.add('light')
+      }
+    </script>
+  </head>
+  <style is:global>
+    :root {
+      background: white;
+      color: black;
+    }
+    :root.dark {
+      background: #1a1a1a;
+      color: white;
+    }
+    .f-row {
+      display: flex;
+      flex-direction: row;
+    }
+    .g-50 {
+      gap: 50px;
+    }
+  </style>
+  <body>
+    <main>
+      <ReactInput client:load />
+      <ViewPreview client:load />
+    </main>
+
+    <main>
+      <ThemeToggle />
+      <script>
+        import { $theme } from '../themeStore'
+        $theme.subscribe((value) => {
+          if (value === 'dark') {
+            document.documentElement.classList.add('dark')
+          } else {
+            document.documentElement.classList.remove('dark')
+          }
+        })
+      </script>
+    </main>
+
+    <main>
+      <h1>我的 Astro 商店2</h1>
+      <div class="f-row g-50">
+        <ProduceList2 />
+        <Cart2_tsx client:load />
+      </div>
+    </main>
+
+    <h1>Astro</h1>
+    <Display client:load />
+    <Button client:load />
+
+    <main>
+      <h1>我的 Astro 商店</h1>
+      <div class="f-row g-50">
+        <ProductList />
+        <Cart />
+      </div>
+    </main>
+  </body>
+</html>

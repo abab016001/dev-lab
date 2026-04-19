@@ -1,0 +1,34 @@
+---
+import { getCollection } from 'astro:content'
+import Layout from '../layouts/Layout.astro'
+const allTechs = await getCollection('techs')
+---
+
+<Layout title="DevPulse">
+  <main class="max-w-4xl mx-auto p-8">
+    <h1 class="text-4xl font-bold tracking-tight text-gray-900 mb-8">
+      My Tech Radar
+    </h1>
+
+    <div class="flex gap-4 mb-10">
+      <button
+        class="px-4 py-2 bg-indigo-600 text-white rounded-full hover:scale-105 transition"
+      >
+        All
+      </button>
+    </div>
+
+    <div class="grid grid-cols-1 mk:grid-cols-3 gap-6">
+      {
+        allTechs.map((tech) => (
+          <div class="p-6 border border-gray-200 rounded-2xl hover:shadow-lg transition-shadow">
+            <h3 class="text-xl font-semibold">{tech.data.name}</h3>
+            <span class="text-sm text-indigo-500 uppercase">
+              {tech.data.status}
+            </span>
+          </div>
+        ))
+      }
+    </div>
+  </main>
+</Layout>

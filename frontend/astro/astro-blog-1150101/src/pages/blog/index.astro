@@ -1,0 +1,39 @@
+---
+import Layout from '../../layouts/Layout.astro'
+import { getCollection } from 'astro:content'
+import type { CollectionEntry } from 'astro:content'
+
+const posts: CollectionEntry<'blog'>[] = await getCollection('blog')
+---
+
+<Layout title="Blog">
+  <div class="container my-5">
+    <h1 class="mb-4">部落格文章</h1>
+
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+      {
+        posts.map((post) => (
+          <div class="col">
+            <div class="card h-100">
+              <div class="card-body">
+                <h5 class="card-title">{post.data.title}</h5>
+                <p class="card-text">{post.data.description}</p>
+                <p class="card-text">
+                  <small class="text-muted">
+                    發布於 {post.data.pubDate.toLocaleDateString('zh-TW')}
+                  </small>
+                </p>
+                <a
+                  href={`${import.meta.env.BASE_URL}blog/${post.slug}`}
+                  class="btn btn-primary"
+                >
+                  閱讀文章
+                </a>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</Layout>

@@ -1,0 +1,21 @@
+---
+const { type = 'info' } = Astro.props
+---
+
+<div class={`alert ${type}`}>
+  <slot />
+</div>
+
+<style>
+  .alert {
+    padding: 12px;
+    border-radius: 6px;
+  }
+
+  .info {
+    background: #e0f2ff;
+  }
+  .warning {
+    background: #fff3cd;
+  }
+</style>

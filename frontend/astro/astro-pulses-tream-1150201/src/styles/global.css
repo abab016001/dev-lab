@@ -1,0 +1,14 @@
+/* src/styles/global.css */
+@import 'tailwindcss';
+
+@theme {
+  --color-brand-primary: oklch(70% 0.15 200); /* 電漿藍 */
+  --color-brand-bg: oklch(18% 0.01 260); /* 深海黑 */
+  --color-card: oklch(25% 0.02 260 / 50%);
+}
+
+@layer base {
+  body {
+    @apply bg-brand-bg text-white antialiased;
+  }
+}

@@ -1,0 +1,32 @@
+---
+const products = [
+  { id: 'p1', name: 'Astro 貼紙', price: 50 },
+  { id: 'p2', name: 'Nano 紀念衫', price: 500 },
+]
+---
+
+<div class="product-grid">
+  {
+    products.map((item) => (
+      <div class="card">
+        <h3>{item.name}</h3>
+        <p>{item.price}</p>
+        <button class="add-btn" data-item={JSON.stringify(item)}>
+          加入購物車
+        </button>
+      </div>
+    ))
+  }
+</div>
+
+<script>
+  import { addToCart } from '../cartStore'
+
+  const buttons = document.querySelectorAll('.add-btn')
+  buttons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const item = JSON.parse(btn.getAttribute('data-item')!)
+      addToCart(item)
+    })
+  })
+</script>

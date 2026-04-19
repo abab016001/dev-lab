@@ -1,0 +1,39 @@
+---
+import Layout from '../../layouts/Layout.astro'
+import SearchBox from '../../components/SearchBox'
+import ProductGrid from '../../components/ProductGrid'
+
+type Lang = 'zh' | 'en'
+
+const response = await fetch('https://fakestoreapi.com/products')
+const initialProducts = await response.json()
+
+const translations = {
+  zh: { title: '產品探索', subtitle: '找尋你的專屬商品' },
+  en: { title: 'Product Explorer', subtitle: 'Find your perfect items' },
+}
+
+const isLang = (v: string): v is Lang => v === 'zh' || v === 'en'
+const langParam = Astro.params.lang ?? 'en'
+const lang: Lang = isLang(langParam) ? langParam : 'en'
+const t = translations[lang]
+console.log({ langParam }, Astro.params.lang)
+---
+
+<Layout title={t.title}>
+  <main class="max-w-6xl mx-auto p-8">
+    <header class="mb-8">
+      <h1 class="text-4xl font-bold text-slate-900">{t.title}</h1>
+      <p class="text-slate-500">{t.subtitle}</p>
+    </header>
+    <div class="grid grid-col-1 md:grid-cols-3 gap-8">
+      <aside class="md:col-span-1">
+        <SearchBox client:load />
+      </aside>
+
+      <section class="md:col-span-2">
+        <ProductGrid products={initialProducts} />
+      </section>
+    </div>
+  </main>
+</Layout>

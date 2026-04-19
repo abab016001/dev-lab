@@ -1,0 +1,13 @@
+<button id="theme-btn" class="p-2 border rounded"> 切換模式 </button>
+
+<script>
+  import { $theme, toggleTheme } from '../themeStore'
+
+  const btn = document.getElementById('theme-btn')
+
+  btn?.addEventListener('click', toggleTheme)
+
+  $theme.subscribe((value) => {
+    btn!.textContent = value === 'dark' ? '🌙 深色模式' : '☀️ 淺色模式'
+  })
+</script>

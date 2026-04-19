@@ -1,0 +1,22 @@
+---
+import { getCollection } from 'astro:content'
+import type { CollectionEntry } from 'astro:content'
+const posts: CollectionEntry<'blog'>[] = await getCollection('blog')
+
+// 模擬資料庫查詢
+await new Promise((resolve) => setTimeout(resolve, 2000))
+---
+
+<ul>
+  {
+    posts
+      .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+      .map((post) => (
+        <li>
+          <span>{post.id}</span>
+          <a href={`/posts/${post.id}`}>{post.data.title}</a>
+          <span> - {post.data.pubDate.toLocaleDateString()} </span>
+        </li>
+      ))
+  }
+</ul>

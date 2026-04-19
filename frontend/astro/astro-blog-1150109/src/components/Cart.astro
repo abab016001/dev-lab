@@ -1,0 +1,29 @@
+<div class="cart-container">
+  <h2>你的購物車</h2>
+  <ul id="cart-items"></ul>
+  <hr />
+  <p>總計：<span id="total-count">0</span></p>
+</div>
+
+<script>
+  import { $cart } from '../cartStore'
+
+  const cartList = document.querySelector('#cart-items')
+  const totalDisplay = document.querySelector('#total-count')
+
+  $cart.subscribe((cartContent) => {
+    cartList!.innerHTML = ''
+
+    let total = 0
+
+    Object.values(cartContent).forEach((item) => {
+      total += item.quantity
+
+      const li = document.createElement('li')
+      li.textContent = `${item.name} x ${item.quantity}`
+      cartList?.append(li)
+    })
+
+    totalDisplay!.textContent = total.toString()
+  })
+</script>

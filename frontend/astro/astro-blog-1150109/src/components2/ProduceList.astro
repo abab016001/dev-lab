@@ -1,0 +1,68 @@
+---
+import type { CartItem } from '../cartStore2'
+const produceList: CartItem[] = [
+  {
+    id: 'A001',
+    name: '鬼滅之刃 竈門炭治郎 公仔',
+    price: 1280,
+  },
+  {
+    id: 'A002',
+    name: '進擊的巨人 自由之翼 T-shirt',
+    price: 790,
+  },
+  {
+    id: 'A003',
+    name: '咒術迴戰 五條悟 壓克力立牌',
+    price: 450,
+  },
+  {
+    id: 'A004',
+    name: '航海王 魯夫 草帽',
+    price: 990,
+  },
+  {
+    id: 'A005',
+    name: 'SPY×FAMILY 安妮亞 鑰匙圈',
+    price: 220,
+  },
+  {
+    id: 'A006',
+    name: '初音未來 2024 限定滑鼠墊',
+    price: 560,
+  },
+  {
+    id: 'A007',
+    name: '鋼之鍊金術師 國家鍊金術師徽章',
+    price: 350,
+  },
+]
+---
+
+<div>
+  <h2>商品清單2</h2>
+  <ul>
+    {
+      produceList.map((item) => (
+        <li>
+          <h3>{item.name}</h3>
+          <span>{item.price}</span>
+          <button class="add-btn2" data-item={JSON.stringify(item)}>
+            加入購物車
+          </button>
+        </li>
+      ))
+    }
+  </ul>
+</div>
+
+<script>
+  import { addToCart } from '../cartStore2'
+  const btns = document.querySelectorAll('.add-btn2')
+  btns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const item = btn.getAttribute('data-item')
+      addToCart(JSON.parse(item!))
+    })
+  })
+</script>

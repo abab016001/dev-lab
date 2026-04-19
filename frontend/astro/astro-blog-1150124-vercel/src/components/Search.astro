@@ -1,0 +1,33 @@
+---
+// Search.astro
+---
+
+<link rel="stylesheet" href="/pagefind/pagefind-ui.css" />
+<script src="/pagefind/pagefind-ui.js" is:inline></script>
+
+<div id="search" class="w-full max-w-2xl mx-auto"></div>
+
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    // @ts-ignore
+    new PagefindUI({
+      element: '#search',
+      showSubResults: true,
+      bundlePath: '/pagefind/',
+    })
+  })
+</script>
+
+<style is:global>
+  @reference "../styles/global.css";
+  :root {
+    --pagefind-ui-primary: var(--color-brand);
+    --pagefind-ui-text: #374151;
+    --pagefind-ui-background: #ffffff;
+    --pagefind-ui-border: #e5e7eb;
+  }
+
+  .pagefind-ui__drawer {
+    @apply shadow-xl rounded-lg border border-gray-100 p-4;
+  }
+</style>

@@ -1,0 +1,6 @@
+/* @layer base */
+@import "tailwindcss";
+
+@theme {
+  --color-brand-orange: #ff5d01;
+}

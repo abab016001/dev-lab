@@ -1,0 +1,14 @@
+<div id="display">0</div>
+<div id="name"></div>
+<div id="role"></div>
+
+<script>
+  import { $counter } from '../store'
+  import { $user } from '../store'
+
+  const div = document.querySelector('#display')
+
+  $counter.subscribe((value) => {
+    div!.textContent = value.toString()
+  })
+</script>

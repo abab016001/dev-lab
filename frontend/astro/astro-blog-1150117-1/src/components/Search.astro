@@ -1,0 +1,37 @@
+---
+// Search.astro
+---
+
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
+<script src="/pagefind/pagefind-ui.js" is:inline></script>
+
+<div id="search" class="w-full max-w-2xl mx-auto"></div>
+
+<script>
+  declare const PagefindUI: any
+  window.addEventListener('DOMContentLoaded', (event) => {
+    new PagefindUI({
+      element: '#search',
+      showSubResults: true,
+      // bundlePath: '/_pagefind/',
+      bundlePath: '/pagefind/',
+    })
+  })
+</script>
+
+<style is:global>
+  /* 使用 Tailwind v4 語法調整 Pagefind UI 外觀 */
+  :root {
+    --pagefind-ui-primary: var(--color-brand);
+    --pagefind-ui-text: #374151;
+    --pagefind-ui-background: #ffffff;
+    --pagefind-ui-border: #e5e7eb;
+  }
+
+  .pagefind-ui__drawer {
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+    border-radius: 0.5rem;
+    border: 1px solid #f3f4f6;
+    padding: 1rem;
+  }
+</style>

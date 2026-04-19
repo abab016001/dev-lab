@@ -1,0 +1,49 @@
+---
+import Welcome from '../components/Welcome.astro'
+import Layout from '../layouts/Layout.astro'
+import MainLayout from '../layouts/MainLayout.astro'
+import Alert from '../components/Alert.astro'
+import Counter from '../components/Counter.jsx'
+
+import { getCollection } from 'astro:content'
+import type { CollectionEntry } from 'astro:content'
+
+// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
+// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const name = 'Astro 新手'
+const year = new Date().getFullYear()
+const isLogin = true
+
+const posts: CollectionEntry<'blog'>[] = await getCollection('blog')
+---
+
+<Layout title="部落格列表 | Astro Blog" description="我的所有文章列表">
+  <div class="container my-5">
+    <h1 class="mb-4">部落格文章</h1>
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+      {
+        posts.map((post) => (
+          <div class="col">
+            <div class="card h-100">
+              <div class="card-body">
+                <h5 class="card-title">{post.data.title}</h5>
+                <p class="card-text">{post.data.description}</p>
+                <p class="card-text">
+                  <small class="text-muted">
+                    {post.data.pubDate.toLocaleDateString('zh-TW')}
+                  </small>
+                </p>
+                <a
+                  href={`${import.meta.env.BASE_URL}blog/${post.slug}`}
+                  class="btn btn-primary"
+                >
+                  閱讀文章
+                </a>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</Layout>

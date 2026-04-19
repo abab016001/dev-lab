@@ -1,0 +1,23 @@
+---
+const language = { en: 'English', 'zh-tw': '繁體中文' }
+---
+
+<ul class="flex gap-4">
+  <li>
+    <a href={`/`} class="text-brand hover:underline"> 首頁 </a>
+  </li>
+  {
+    Object.entries(language).map(([code, label]) => (
+      <li>
+        <a href={`/${code}/products`} class="text-brand hover:underline">
+          {label}
+        </a>
+      </li>
+      <li>
+        <a href={`/${code}/dashboard`} class="text-brand hover:underline">
+          {label} 儀錶板
+        </a>
+      </li>
+    ))
+  }
+</ul>

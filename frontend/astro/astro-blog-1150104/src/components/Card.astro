@@ -1,0 +1,32 @@
+---
+interface Props {
+  title: string
+  description: string
+  tags: string[]
+}
+const { title, description, tags } = Astro.props
+---
+
+<div
+  class="group overflow-hidden rounded-xl border border-slate-200 bg-white transition-all hover:shadow-lg hover:-translate-y-1"
+>
+  <div class="p-6">
+    <div class="flex gap-2 mb-3">
+      {
+        tags.map((tag) => (
+          <span class="text-xs font-medium px-2 py-1 rounded-full bg-indigo-50 text-indigo-600">
+            {tag}
+          </span>
+        ))
+      }
+    </div>
+    <h3
+      class="text-xl font-bold text-slate-900 group-hover:text-indigo-600 transition-colors"
+    >
+      {title}
+    </h3>
+    <p class="mt-2 text-slate-600 text-sm leading-relaxed">
+      {description}
+    </p>
+  </div>
+</div>

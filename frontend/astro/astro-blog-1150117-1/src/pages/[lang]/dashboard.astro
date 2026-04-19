@@ -1,0 +1,26 @@
+---
+import { getCollection } from 'astro:content'
+import PriceChart from '../../components/PriceChart'
+
+const { lang } = Astro.params
+const allProducts = await getCollection('products', ({ id }) =>
+  id.startsWith(lang!)
+)
+
+export const getStaticPaths = () => {
+  return [{ params: { lang: 'en' } }, { params: { lang: 'zh-tw' } }]
+}
+
+const chartData = allProducts.map((p) => ({
+  name: p.data.title,
+  price: p.data.price,
+}))
+
+import Layout from '../../layouts/Layout.astro'
+---
+
+<Layout>
+  <section class="mt-8">
+    <PriceChart client:load data={chartData} />
+  </section>
+</Layout>

@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import ServerTime from '../components/ServerTime.astro'
+const pageTitle = '首頁'
+const skills = ['Astro', 'TypeScript', 'React']
+const password = import.meta.env.SECRET_PASSWORD
+---
+
+<BaseLayout pageTitle={pageTitle} pageName="index">
+  <h2>歡迎來到我的 Astro 課程</h2>
+  <p>這是我的第一個頁面，正在練習如何使用 Layout。</p>
+
+  <ul>
+    {skills.map((x) => <li>{x}</li>)}
+  </ul>
+
+  <ServerTime server:defer>
+    <p slot="fallback" class="loading">正在連線伺服器...</p>
+  </ServerTime>
+
+  <form action="" id="greeting-form">
+    <input type="text" name="name" placeholder="輸入你的名字" required />
+    <button type="submit">發送</button>
+  </form>
+
+  <p id="result"></p>
+
+  <script>
+    import { actions } from 'astro:actions'
+
+    const form = document.querySelector('form')
+    const resultElement = document.querySelector('#result')
+
+    form?.addEventListener('submit', async (e) => {
+      e.preventDefault()
+
+      const formData = new FormData(form)
+      const name = formData.get('name') as string
+
+      const { data, error } = await actions.getGreeting({ name })
+      if (!error) {
+        resultElement!.textContent = data
+      } else {
+        resultElement!.textContent = '出錯了：' + error.message
+      }
+    })
+  </script>
+</BaseLayout>

@@ -1,0 +1,19 @@
+---
+// 這個組件會在伺服器上執行
+const time = new Date().toLocaleTimeString()
+// 模擬一個慢速的資料庫查詢
+await new Promise((resolve) => setTimeout(resolve, 20000))
+---
+
+<div class="server-box">
+  <p>伺服器即時時間：{time}</p>
+  <p>（此組件是延遲載入的 Server Island）</p>
+</div>
+
+<style>
+  .server-box {
+    border: 2px dashed #ff5d01;
+    padding: 1rem;
+    background: #fff5f0;
+  }
+</style>

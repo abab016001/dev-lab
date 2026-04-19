@@ -1,0 +1,69 @@
+---
+import '../styles/global.css'
+
+const { pageTitle, pageName } = Astro.props
+const _bodyClass =
+  pageName == 'index' ? 'bg-white' : pageName == 'about' ? 'bg-gray' : ''
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{pageTitle}</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        line-height: 1.6;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2rem;
+      }
+      nav {
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 1rem;
+        margin-bottom: 2rem;
+      }
+      a {
+        margin-right: 1rem;
+        text-decoration: none;
+        color: #0070f3;
+      }
+      .bg-white {
+        background: white;
+      }
+      .bg-gray {
+        background: rgb(235, 235, 235);
+      }
+    </style>
+  </head>
+  <body class={_bodyClass}>
+    <nav class="backdrop-blur-md bg-white/70">
+      <a href="/">首頁</a>
+      <a href="/about">關於我</a>
+      <a href="/blog">部落格</a>
+      <a href="/admin" id="navAdminHref">後臺管理</a>
+    </nav>
+
+    <h1>{pageTitle}</h1>
+
+    <slot />
+
+    <footer>
+      <hr />
+      <p>© 2024 我的 Astro 學習筆記</p>
+    </footer>
+
+    <script>
+      const navAdminHref = document.getElementById('navAdminHref')
+      navAdminHref!.addEventListener('click', (e) => {
+        e.preventDefault()
+        console.log('點擊 Admin', e)
+        const password = prompt('請輸入密碼')
+        location.href = '/admin?' + `pass=${password}`
+      })
+    </script>
+  </body>
+</html>

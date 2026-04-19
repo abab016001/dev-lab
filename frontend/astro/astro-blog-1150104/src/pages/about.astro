@@ -1,0 +1,67 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import DescriptionControl from '../components/DescriptionControl'
+import RandomQuote from '../components/RandomQuote.astro'
+const pageTitle = '關於我'
+const identity = {
+  firstName: '小明',
+  hobbies: ['reading', 'gaming', 'coding'],
+}
+const description =
+  '這段文字旨在模擬實際使用中的描述欄位，長度超過二十個字以符合需求。'
+---
+
+<BaseLayout pageTitle={pageTitle} pageName="about">
+  <h2>{identity.firstName}</h2>
+
+  <h3>我的愛好</h3>
+  <ul>
+    {identity.hobbies.map((x) => <li>{x}</li>)}
+  </ul>
+
+  <h3>描述</h3>
+  <DescriptionControl description={description} client:visible />
+
+  <h3>隨機生成</h3>
+  <RandomQuote server:defer>
+    <p slot="fallback" class="loading">等待隨機生成....</p>
+  </RandomQuote>
+
+  <form id="form">
+    <input
+      type="text"
+      name="author"
+      id="author"
+      placeholder="使用者名稱"
+      required="required"
+    />
+    <input
+      type="text"
+      name="content"
+      id="content"
+      placeholder="輸入留言"
+      required="required"
+    />
+    <button type="submit">發送</button>
+  </form>
+
+  <script>
+    import { actions } from 'astro:actions'
+    const formElement = document.querySelector('form')
+
+    formElement?.addEventListener('submit', async (e) => {
+      e.preventDefault()
+
+      const formData = new FormData(formElement)
+      const author = formData.get('author') as string
+      const content = formData.get('content') as string
+
+      const { data, error } = await actions.postComment({ author, content })
+      if (!error) {
+        alert(data)
+      } else {
+        alert(error)
+      }
+    })
+  </script>
+</BaseLayout>

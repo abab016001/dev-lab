@@ -1,0 +1,12 @@
+---
+import Layout from '../layouts/Layout.astro'
+import MainLayout from '../layouts/MainLayout.astro'
+const skills = ['JavaScript', 'Astro', 'Bootstrap']
+---
+
+<MainLayout>
+  <h1>關於我</h1>
+  <ul>
+    {skills.map((x) => <li>{x}</li>)}
+  </ul>
+</MainLayout>

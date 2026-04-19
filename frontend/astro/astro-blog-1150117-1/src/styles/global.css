@@ -1,0 +1,14 @@
+@import 'tailwindcss';
+
+@theme {
+  /* 定義儀表板專用顏色 */
+  --color-dashboard-bg: #f8fafc;
+  --color-brand: #3b82f6;
+}
+
+/* v4 不再需要 @tailwind base/components/utilities; 只要 @import 即可 */
+
+@variant dark {
+  --color-brand: #60a5fa;
+  --color-dashboard-bg: #0f172a;
+}

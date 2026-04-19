@@ -1,0 +1,28 @@
+---
+let random
+try {
+  const res = await fetch('https://zenquotes.io/api/random')
+  const data = await res.json()
+
+  console.log(data)
+  random = data
+} catch (err) {
+  console.error(err)
+}
+
+// 模擬一個慢速的資料庫查詢
+await new Promise((resolve) => setTimeout(resolve, 2000))
+---
+
+<div class="server-box">
+  <p>伺服器隨機生成：{random[0].q}</p>
+  <p>（此組件是延遲載入的 Server Island）</p>
+</div>
+
+<style>
+  .server-box {
+    border: 2px dashed #ff5d01;
+    padding: 1rem;
+    background: #fff5f0;
+  }
+</style>

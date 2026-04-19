@@ -1,0 +1,33 @@
+---
+import type { GetStaticPaths } from 'astro'
+import Layout from '../../layouts/Layout.astro'
+import { getCollection } from 'astro:content'
+import type { CollectionEntry } from 'astro:content'
+
+export const getStaticPaths = async () => {
+  const posts: CollectionEntry<'blog'>[] = await getCollection('blog')
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+  }))
+}
+
+const { slug } = Astro.params
+
+const posts: CollectionEntry<'blog'>[] = await getCollection('blog')
+const post = posts.find((p) => p.slug === slug)
+---
+
+<Layout
+  title={`${post?.data.title} | Astro Blog`}
+  description={post?.data.description}
+>
+  <div class="container my-5">
+    <h1>{post?.data.title}</h1>
+    <p>
+      <small class="text-muted"
+        >{post?.data.pubDate.toLocaleDateString('zh-TW')}</small
+      >
+    </p>
+    <div>{post?.body}</div>
+  </div>
+</Layout>

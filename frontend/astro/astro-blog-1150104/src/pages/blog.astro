@@ -1,0 +1,32 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import PostsQuote from '../components/PostsQuote.astro'
+import Card from '../components/Card.astro'
+import { getCollection } from 'astro:content'
+import type { CollectionEntry } from 'astro:content'
+
+const pageTitle = '我的部落格'
+const posts: CollectionEntry<'blog'>[] = await getCollection('blog')
+---
+
+<BaseLayout pageTitle={pageTitle}>
+  <PostsQuote server:defer>
+    <p slot="fallback" class="loading">文章列表載入中...</p>
+  </PostsQuote>
+
+  <h2 class="text-brand-orange">文章列表</h2>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {
+      posts
+        .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+        .map((post) => (
+          <Card
+            title={post.data.title}
+            description={post.data.description}
+            tags={post.data.tags}
+          />
+        ))
+    }
+  </div>
+</BaseLayout>

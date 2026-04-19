@@ -1,0 +1,30 @@
+---
+const { title = 'Astro Demo' } = Astro.props
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <header>
+      <h2>🚀 我的 Astro 網站</h2>
+      <nav>
+        <a href={`${import.meta.env.BASE_URL}`}>首頁</a> |
+        <a href={`${import.meta.env.BASE_URL}about`}>關於我</a>
+      </nav>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer>
+      <hr />
+      <small>© 2025 🚀 我的 Astro 網站</small>
+    </footer>
+  </body>
+</html>

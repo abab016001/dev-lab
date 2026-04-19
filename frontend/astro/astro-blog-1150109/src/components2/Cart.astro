@@ -1,0 +1,49 @@
+---
+import { $cart } from '../cartStore2'
+// 導入型別
+import type { CartItem } from '../cartStore2'
+
+const cartItems = Object.values($cart.get())
+console.log('cartItems', cartItems)
+---
+
+<div class="cart-container">
+  <h2>你的購物車2</h2>
+  <hr />
+  <ul id="cart2-items"></ul>
+  <p>總計項目：<span id="cart2-total-cnt"></span></p>
+  <p>總計金額：<span id="cart2-total-amt"></span></p>
+</div>
+
+<script>
+  import { $cart } from '../cartStore2'
+  import type { CartItem } from '../cartStore2'
+
+  const cartListUl = document.getElementById('cart2-items')
+
+  // 訂閱 store 變化
+  $cart.subscribe((items) => {
+    if (!cartListUl) return
+    cartListUl.innerHTML = Object.values(items).reduce(
+      (acc, cur) =>
+        (acc += `
+      <li>
+        ${cur.name} x ${cur.quantity}  
+      </li>
+      `),
+      ''
+    )
+
+    const totalCnt = Object.values(items).reduce(
+      (acc, cur) => (acc += Number(cur.quantity ?? 0)),
+      0
+    )
+    const totalAmt = Object.values(items).reduce(
+      (acc, cur) => (acc += Number(cur.quantity ?? 0) * Number(cur.price ?? 0)),
+      0
+    )
+
+    document.getElementById('cart2-total-cnt')!.innerHTML = totalCnt.toString()
+    document.getElementById('cart2-total-amt')!.innerHTML = totalAmt.toString()
+  })
+</script>
